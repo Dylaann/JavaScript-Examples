@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Scene.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Scene.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Scene class
+ * @class
+ * @classdesc This scene class displays to the canvas.
+ */
+class Scene{
+  /**
+   * Constructor function
+   * @constructor Constructor.
+   * @param {string} title takes in the string which will be displayed as the title for the scene.
+   * @param {integer} x value for the x co-ordinate of the title.
+   * @param {integer} y value for the y co-ordinate of the title.
+   * @param {String} colour String for a refernce to a colour.
+   */
+  constructor(title, x, y, colour)
+  {
+    this.title = title;
+    this.x = x;
+    this.y = y;
+    this.colour = colour;
+  }
+
+  /**
+   * function that is called when the scene is started.
+   * @function start
+   */
+  start()
+  {
+    console.log("Scene Starts");
+  }
+
+  /**
+   * function that is called when the scene has ended.
+   * @function stop
+   */
+  stop()
+  {
+    console.log("Scene Ends")
+  }
+
+  /**
+   * function that draws the scene on the canvas.
+   * @function render
+   */
+  render()
+  {
+    var canvas = document.getElementById('mycanvas');
+    var square = canvas.getContext('2d');
+    square.clearRect(0,0, canvas.width, canvas.height);
+
+    var ctx = document.getElementById("mycanvas").getContext("2d");
+    this.changeBackground(this.colour);
+    ctx.font = '48px serif';
+    ctx.fillText(this.title, this.x, this.y);
+    ctx.strokeText(this.title, this.x, this.y);
+  }
+
+  /**
+   * function that draws the scene on the canvas.
+   * @function getTitle
+   * function to return the title
+   */
+  getTitle()
+  {
+    return this.title;
+  }
+
+  /**
+   * function that changes the background Colour.
+   * @function changeBackground
+   * @param {String} color A string used as reference to a colour.
+   */
+  changeBackground(color) {
+   document.body.style.background = color;
+}
+}
+
+/**
+ * Title Scene class
+ * @class
+ * @classdesc This class inherits from the scene class.
+ */
+class TitleScene extends Scene
+{
+  constructor()
+  {
+    super("Title Scene");
+    this.title = "Title Scene";
+    this.x = 400;
+    this.y = 300;
+    this.colour = "White";
+  }
+
+}
+
+/**
+ * Menu Scene class
+ * @class
+ * @classdesc This class inherits from the scene class.
+ */
+class MenuScene extends Scene
+{
+  constructor()
+  {
+    super("Menu Scene");
+    this.title = "Menu Scene";
+    this.play = "Play";
+    this.quit = "Quit";
+    this.x = 400;
+    this.y = 300;
+    this.colour = "Magenta";
+  }
+
+  /**
+   * function that changes the background Colour.
+   * @function render
+   * Override function to render with a different colour and font.
+   */
+  render()
+  {
+    var canvas = document.getElementById('mycanvas');
+    var square = canvas.getContext('2d');
+    square.clearRect(0,0, canvas.width, canvas.height);
+
+    var ctx = document.getElementById("mycanvas").getContext("2d");
+    this.changeBackground(this.colour);
+    ctx.font = '60px Arial';
+    ctx.fillText(this.title, this.x, this.y);
+    ctx.strokeText(this.title, this.x, this.y);
+    ctx.fillText(this.play, this.x, this.y + 100);
+    ctx.strokeText(this.play, this.x, this.y + 100);
+    ctx.fillText(this.quit, this.x, this.y + 200);
+    ctx.strokeText(this.quit, this.x, this.y + 200);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Constructor..html">Constructor.</a></li><li><a href="Default%252520Constructor,%252520doesnt%252520take%252520in%252520any%252520parameters..html"> doesnt take in any parameters.</a></li><li><a href="Game.html">Game</a></li><li><a href="MenuScene.html">MenuScene</a></li><li><a href="Scene.html">Scene</a></li><li><a href="SceneManager.html">SceneManager</a></li><li><a href="TitleScene.html">TitleScene</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addScene">addScene</a></li><li><a href="global.html#changeBackground">changeBackground</a></li><li><a href="global.html#clickHandler">clickHandler</a></li><li><a href="global.html#getTitlefunctiontoreturnthetitle">getTitlefunction to return the title</a></li><li><a href="global.html#goToNextSceneGoestothenextsceneinthelist.">goToNextSceneGoes to the next scene in the list.</a></li><li><a href="global.html#goToScene">goToScene</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initCanvas">initCanvas</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#renderIfthecurrentsceneisnullnothingwillberendered.">renderIf the current scene is null nothing will be rendered.</a></li><li><a href="global.html#renderOverridefunctiontorenderwithadifferentcolourandfont.">renderOverride function to render with a different colour and font.</a></li><li><a href="global.html#start">start</a></li><li><a href="global.html#stop">stop</a></li><li><a href="global.html#stopCurrentSceneIfthecurrentsceneisnullnothinghappens.">stopCurrentSceneIf the current scene is null nothing happens.</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Oct 10 2017 10:21:48 GMT+0100 (GMT Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
